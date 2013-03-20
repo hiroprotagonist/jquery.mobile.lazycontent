@@ -21,7 +21,7 @@
 			$.ajax ({
 				url: url,
 				success: function( html ) {
-					var content = $(html);
+					var content = $( html.trim() );
 					widget.element.html( content );	// Replace old content with new content
 					if ( typeof(content.attr('data-role')) !== 'undefined' ) {	// Apply ui plugin if possible
 						var pluginName = content.attr('data-role');
@@ -36,7 +36,7 @@
 			this.element.html ( loading );
 		}
 	});
-	$( ":jqmData(role='page')" ).live( "pageinit", function() {
+	$.mobile.document.bind( "pageinit", function( e ) {
 		$( ":jqmData(role='lazycontent')", this ).each(function() {
 			$(this).lazycontent();
 		});
